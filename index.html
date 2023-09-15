@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/34f3b6660f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>Rating Display</title>
+</head>
+<body>
+    <h2>Star Rating display</h2>
+    <hr>
+    <div class="container"> 
+        <div class="stars">
+            <span class="star" data-value="1">✯</span>
+            <span class="star" data-value="2">✯</span>
+            <span class="star" data-value="3">✯</span>
+            <span class="star" data-value="4">✯</span>
+            <span class="star" data-value="5">✯</span>
+        </div>
+        <p>Rate your <strong>Experiance</strong></p>
+        <p>Rating: <span class="rate-value">0</span> Stars.</p>
+        <div class="emoji"> </div>
+    </div>
+
+    <script>
+        let stars = document.querySelectorAll('.star')
+        let value = document.querySelector('.rate-value')
+        let emoji = document.querySelector('.emoji')
+        let smileys = ['😢', '😞', '😐', '😀', '😎'];
+
+        stars.forEach((star) => {
+            star.addEventListener('click', (e) => {
+            let starClicked = e.target;
+            let ratedValue = starClicked.getAttribute('data-value');
+            value.textContent = ratedValue;
+            smiley();
+            console.log(e.target)
+            
+            stars.forEach((star) => {
+            let starValue = star.getAttribute('data-value');
+            if (starValue <= ratedValue) { 
+                star.classList.add('active');
+            } else {
+                star.classList.remove('active');
+            }
+        });
+    });  
+});
+
+function smiley(){
+    let index = value.textContent;
+    emoji.textContent = smileys[index-1];
+}
+    </script>
+
+</body>
+</html>
